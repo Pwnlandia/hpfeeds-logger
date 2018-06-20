@@ -266,12 +266,11 @@ def kippo_cowrie_sessions(identifier, payload, name, channel):
             messages.append(msg)
 
     if dec.loggedin:
-        for username, password in dec.loggedin;
-            msg = dict(base_message)
-            msg['signature'] = 'SSH root login on {} honeypot'.format(name_lower)
-            msg['ssh_username'] = username
-            msg['ssh_password'] = password
-            messages.append(msg)
+        msg = dict(base_message)
+        msg['signature'] = 'SSH root login on {} honeypot'.format(name_lower)
+        msg['ssh_username'] = loggedin[0]
+        msg['ssh_password'] = loggedin[1]
+        messages.append(msg)
 
     if dec.urls:
         for url in dec.urls:
