@@ -294,7 +294,7 @@ def kippo_cowrie_sessions(identifier, payload, name, channel):
         direction='inbound',
         ids_type='network',
         severity='high',
-        signature='SSH session on {} honeypot'.format(name_lower),
+        signature='{} session on {} honeypot'.format(dec.protocol, name_lower),
         ssh_version=dec.version
     )
 
@@ -303,7 +303,7 @@ def kippo_cowrie_sessions(identifier, payload, name, channel):
     if dec.credentials:
         for username, password in dec.credentials:
             msg = dict(base_message)
-            msg['signature'] = 'SSH login attempted on {} honeypot'.format(name_lower)
+            msg['signature'] = '{} login attempted on {} honeypot'.format(dec.protocol, name_lower)
             msg['ssh_username'] = username
             msg['ssh_password'] = password
             messages.append(msg)
